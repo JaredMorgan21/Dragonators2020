@@ -29,7 +29,7 @@ public class CVTest extends LinearOpMode {
     private DcMotor FLM;
     private DcMotor FRM;
 
-    private StoneDetector stoneDetector;
+    private OpenCvCamera phoneCam;
     private StoneDetector stoneDetector;
 
 

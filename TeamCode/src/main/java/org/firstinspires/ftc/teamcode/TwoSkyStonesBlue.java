@@ -98,7 +98,7 @@ public class TwoSkyStonesBlue extends LinearOpMode {
         skyStoneDetector = new SkyStoneDetector();
         phoneCam.setPipeline(skyStoneDetector);
 
-        // make sure the imu gryo is calibrated before continuing
+        // make sure the imu gyro is calibrated before continuing
         while (!isStopRequested() && !Imu.isGyroCalibrated()) {
             sleep(50);
             idle();
@@ -108,10 +108,13 @@ public class TwoSkyStonesBlue extends LinearOpMode {
         telemetry.addData("imu calibration status", Imu.getCalibrationStatus().toString());
         telemetry.update();
 
+        phoneCam.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
 
         waitForStart();
         if (opModeIsActive()) {
+
             sideways(0.5, 1250);
+
             while(!skyStoneDetector.isDetected()){
                 drive(-0.2,50);
 
@@ -133,8 +136,8 @@ public class TwoSkyStonesBlue extends LinearOpMode {
         Stop();
 
     }
-    // For sideways motion. Negative power reverses the power for the motor.
 
+    // For sideways motion. Negative power reverses the power for the motor.
     public void sideways(double power, int time) {
         BLM.setPower(-power);
         BRM.setPower(power);
