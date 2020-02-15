@@ -101,6 +101,7 @@ public class TwoSkyStonesBlue extends LinearOpMode {
         waitForStart();
         if (opModeIsActive()) {
             sideways(0.5, 1250);
+            drive(.5,800);
 
         }
 
