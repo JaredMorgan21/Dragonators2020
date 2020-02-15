@@ -97,6 +97,7 @@ public class TwoSkyStonesBlue extends LinearOpMode {
         phoneCam.openCameraDevice();
         skyStoneDetector = new SkyStoneDetector();
         phoneCam.setPipeline(skyStoneDetector);
+        phoneCam.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
 
         // make sure the imu gyro is calibrated before continuing
         while (!isStopRequested() && !Imu.isGyroCalibrated()) {
@@ -108,7 +109,7 @@ public class TwoSkyStonesBlue extends LinearOpMode {
         telemetry.addData("imu calibration status", Imu.getCalibrationStatus().toString());
         telemetry.update();
 
-        phoneCam.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
+
 
         waitForStart();
         if (opModeIsActive()) {
