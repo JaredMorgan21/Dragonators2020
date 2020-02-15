@@ -108,7 +108,7 @@ public class TwoSkyStonesBlue extends LinearOpMode {
         telemetry.addData("imu calibration status", Imu.getCalibrationStatus().toString());
         telemetry.update();
 
-        phoneCam.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
+        phoneCam.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);0
 
         waitForStart();
         if (opModeIsActive()) {
