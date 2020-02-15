@@ -89,11 +89,12 @@ public class CVTest extends LinearOpMode {
 
         while (opModeIsActive())
         {
+
             /*
              * Send some stats to the telemetry
              */
             if(stoneDetector.isDetected()){
-                turn(.5,500);
+                //turn(.5,500);
                 try {
                     for (int i = 0; i < stoneDetector.foundRectangles().size(); i++) {
                         telemetry.addData("Stone X " + (i + 1), stoneDetector.foundRectangles().get(i).x);
