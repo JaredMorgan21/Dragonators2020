@@ -112,8 +112,12 @@ public class TwoSkyStonesBlue extends LinearOpMode {
         waitForStart();
         if (opModeIsActive()) {
             sideways(0.5, 1250);
-            drive(0.5,1200);
-            encoderDrive(0.5, 1200);
+            while(!skyStoneDetector.isDetected()){
+                drive(-0.2,50);
+
+            }
+            Stop();
+
         }
 
     }
