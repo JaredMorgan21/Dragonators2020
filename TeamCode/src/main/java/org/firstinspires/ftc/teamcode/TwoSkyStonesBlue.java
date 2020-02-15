@@ -18,6 +18,9 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import org.openftc.easyopencv.OpenCvCamera;
+import org.openftc.easyopencv.OpenCvCameraRotation;
+import org.openftc.easyopencv.OpenCvInternalCamera;
 
 @Autonomous(name = "BlueTwoSkystones", group =  "blue full")
 
@@ -41,8 +44,10 @@ public class TwoSkyStonesBlue extends LinearOpMode {
     private Servo push;
     private ElapsedTime runtime = new ElapsedTime();
     private TouchSensor touch;
-    private SkyStoneDetector skystoneDetector;
-    private SkyStoneDetector skystoneDetector;
+    private StoneDetector stoneDetector;
+    private SkyStoneDetector skyStoneDetector;
+    private OpenCvCamera phoneCam;
+
 
     @Override
     public void runOpMode() {
@@ -90,8 +95,8 @@ public class TwoSkyStonesBlue extends LinearOpMode {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         phoneCam = new OpenCvInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
         phoneCam.openCameraDevice();
-        skystoneDetector = new SkyStoneDetector();
-        phoneCam.setPipeline(skystoneDetector);
+        skyStoneDetector = new SkyStoneDetector();
+        phoneCam.setPipeline(skyStoneDetector);
 
         // make sure the imu gryo is calibrated before continuing
         while (!isStopRequested() && !Imu.isGyroCalibrated()) {
@@ -107,7 +112,7 @@ public class TwoSkyStonesBlue extends LinearOpMode {
         waitForStart();
         if (opModeIsActive()) {
             sideways(0.5, 1250);
-            drive(0.5,1200)
+            drive(0.5,1200);
             encoderDrive(0.5, 1200);
         }
 
