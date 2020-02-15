@@ -108,7 +108,7 @@ public class TwoSkyStonesBlue extends LinearOpMode {
         if (opModeIsActive()) {
             sideways(0.5, 1250);
             drive(0.5,1200)
-
+            encoderDrive(0.5, 1200);
         }
 
     }
