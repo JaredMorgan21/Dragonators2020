@@ -41,6 +41,8 @@ public class TwoSkyStonesBlue extends LinearOpMode {
     private Servo push;
     private ElapsedTime runtime = new ElapsedTime();
     private TouchSensor touch;
+    private SkyStoneDetector skystoneDetector;
+    private SkyStoneDetector skystoneDetector;
 
     @Override
     public void runOpMode() {
@@ -85,7 +87,11 @@ public class TwoSkyStonesBlue extends LinearOpMode {
         Imu.initialize(parameters);
         telemetry.addData("Mode", "Calibrating...");
         telemetry.update();
-
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        phoneCam = new OpenCvInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
+        phoneCam.openCameraDevice();
+        skystoneDetector = new SkyStoneDetector();
+        phoneCam.setPipeline(skystoneDetector);
 
         // make sure the imu gryo is calibrated before continuing
         while (!isStopRequested() && !Imu.isGyroCalibrated()) {
@@ -101,7 +107,7 @@ public class TwoSkyStonesBlue extends LinearOpMode {
         waitForStart();
         if (opModeIsActive()) {
             sideways(0.5, 1250);
-            drive(.5,800);
+
 
         }
 
