@@ -104,7 +104,7 @@ public class BlueBuildingZoneParkWall extends LinearOpMode {
         waitForStart();
         if (opModeIsActive()) {
             
-            sideways (0.5,500);
+            sideways (0.5,700);
             BLM.setPower(-0.5);
             BRM.setPower(-0.5);
             FLM.setPower(-0.5);

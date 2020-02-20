@@ -79,6 +79,11 @@ public class RedLoadingZoneParkBridge extends LinearOpMode {
         telemetry.addData("Mode", "Calibrating...");
         telemetry.update();
         
+        FRM.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            FLM.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            BRM.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            BLM.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        
         // make sure the imu gryo is calibrated before continuing
         while (!isStopRequested() && !Imu.isGyroCalibrated())
         {   
@@ -134,21 +139,21 @@ public class RedLoadingZoneParkBridge extends LinearOpMode {
             FRM.setPower(0);
             
             //we lift up the block to the same level as the platform
-            pulley.setPower(-1);
+            pulley.setPower(1);
             sleep(500);
-            drive(0.25, 200);
+            encoderDrive(0.25, 5);
             pulley.setPower(0);
-            GyroTurn(-0.2,160);
+            GyroTurn(-0.2,180);
             
             //we set the power of the flywheel to shoot out the block
             flywheelL.setPower(0.325);
             flywheelR.setPower(-0.325);
-            sleep(1000);
+            sleep(2000);
             flywheelL.setPower(0);
             flywheelR.setPower(0);
             
             
-            encoderDrive(-.5,-20);
+            encoderDrive(-.5,-35);
             
             
         }
@@ -295,18 +300,19 @@ public void encoderDrive (double power, int inches){
             FLM.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BRM.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BLM.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+           
+             FRM.setTargetPosition(target);
+            FLM.setTargetPosition(target);
+            
+            BRM.setTargetPosition(target);
+            BLM.setTargetPosition(target);
             
             FRM.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FLM.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BRM.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BLM.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             
-            FRM.setTargetPosition(target);
-            FLM.setTargetPosition(target);
-            
-            
-            BRM.setTargetPosition(target);
-            BLM.setTargetPosition(target);
+           
             
             FRM.setPower(power);
             FLM.setPower(power);

@@ -123,8 +123,9 @@ public class BlueLoadingZoneParkBridge extends LinearOpMode {
             BRM.setPower(-0.5);
             FLM.setPower(-0.5);
             FRM.setPower(-0.5);
+            RunTime.reset();
         
-            while(!touch.isPressed() && RunTime.seconds() < 10) {
+            while(!touch.isPressed() && RunTime.seconds() < 5) {
                 idle();
                 
             }
@@ -135,9 +136,9 @@ public class BlueLoadingZoneParkBridge extends LinearOpMode {
             FRM.setPower(0);
             
             //we lift up the block to the same level as the platform
-            pulley.setPower(-1);
-            sleep(500);
-            drive(0.25, 200);
+            pulley.setPower(1);
+            sleep(1000);
+            encoderDrive(0.25, 5);
             pulley.setPower(0);
             GyroTurn(0.2,170);
             

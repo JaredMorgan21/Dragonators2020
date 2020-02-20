@@ -1,4 +1,4 @@
-/*package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -136,9 +136,9 @@ public class BlueLoadingZoneParkWall extends LinearOpMode {
             FRM.setPower(0);
             
             //we lift up the block to the same level as the platform
-            pulley.setPower(-1);
+            pulley.setPower(1);
             sleep(500);
-            drive(0.25, 200);
+            encoderDrive(0.25, 5);
             pulley.setPower(0);
             GyroTurn(0.2,180);
             
@@ -369,4 +369,4 @@ public class BlueLoadingZoneParkWall extends LinearOpMode {
 
     
     
-}*/
+}
